@@ -1,5 +1,6 @@
 //Main script
 
+
 // Bubble sort
 var bubbleSort = function bubbleSort(array) {
     for (var i = 0; i < array.length; i++) {
@@ -8,7 +9,6 @@ var bubbleSort = function bubbleSort(array) {
                 var temp = array[i];
                 array[i+1] = array[i];
                 array[i] = temp;
-                console.log(array);
             }
         }
     }
