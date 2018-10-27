@@ -16,6 +16,7 @@ sorters.bubbleSort = function (array) {
             }
         }
     }
+    setTimeout(updateCanvas(array), 3000);
 }
 
 // Insertion sort
@@ -129,11 +130,14 @@ function isSorted(arr) {
 function updateCanvas(arr) {
     let canvas = document.getElementById("sortyboi");
     let ctx = canvas.getContext("2d");
-    ctx.strokeStyle = "#FF0000";
-    ctx.lineWidth = 800 / arr.length;
+    ctx.strokeStyle = "#BB0000";
+    ctx.lineWidth = 1000 / arr.length;
+    let curSpot = ctx.lineWidth / 2;
+    let heightUnit = 800/arr.length;
     for( let i = 0; i < arr.length; i++) {
-        ctx.moveTo(ctx.lineWidth * i,800);
-        ctx.lineTo(ctx.lineWidth * i, 800 - arr[i]);
+        ctx.moveTo(curSpot,800);
+        ctx.lineTo(curSpot, 800 - (heightUnit * arr[i]));
         ctx.stroke();
+        curSpot += ctx.lineWidth;
     }
 }
