@@ -64,6 +64,44 @@ function partition(array, low, high) {
     return (i - 1);
 }
 // Heap sort
+sorters.heapSort = function(array) {
+    buildHeap(array, 0);
+    sortHeap(array);
+}
+function buildHeap(array, top) {
+    let leftIndex = 2 * top + 1;
+    if (leftIndex < array.length) {
+        buildHeap(array, leftIndex);
+        let rightIndex = leftIndex + 1;
+        if (rightIndex < array.length) {
+            buildHeap(array, rightIndex);
+        }
+    }
+    siftDown(array, top, array.length - 1);
+}
+function siftDown(array, top, last) {
+    let leftIndex = 2 * top + 1;
+    if (leftIndex <= last) {
+        let smallestIndex = leftIndex;
+        let rightIndex = leftIndex + 1;
+        if (rightIndex <= last && array[rightIndex] < array[smallestIndex]) {
+            smallestIndex = rightIndex;
+        }
+        if (array[top] > array[smallestIndex]) {
+            swap(array, top, smallestIndex);
+            siftDown(array, smallestIndex, last);
+        }
+
+    }
+}
+function sortHeap(array) {
+    let last = array.length - 1;
+    while (last > 0) {
+        swap(array, 0, last);
+        siftDown(array, 0, --last);
+    }
+    array.reverse();
+}
 
 // BOGO sort
 
