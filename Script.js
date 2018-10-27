@@ -115,6 +115,7 @@ var shuffle = function(arr) {
         arr[newIndex] = temp;
         curIndex--;
     }
+    updateCanvas(arr);
 }
 function isSorted(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
@@ -123,4 +124,16 @@ function isSorted(arr) {
         }
     }
     return true;
+}
+
+function updateCanvas(arr) {
+    let canvas = document.getElementById("sortyboi");
+    let ctx = canvas.getContext("2d");
+    ctx.strokeStyle = "#FF0000";
+    ctx.lineWidth = 800 / arr.length;
+    for( let i = 0; i < arr.length; i++) {
+        ctx.moveTo(ctx.lineWidth * i,800);
+        ctx.lineTo(ctx.lineWidth * i, 800 - arr[i]);
+        ctx.stroke();
+    }
 }
