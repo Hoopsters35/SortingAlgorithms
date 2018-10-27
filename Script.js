@@ -1,41 +1,8 @@
-//Main script
 var ARR_SIZE = 100;
-
-document.getElementById("btnSort").addEventListener("click",
-    () => {
-        let arr = getRandArr();
-        console.log(arr);
-        //startSort(arr);
-    });
-startSort = (arr) => {
-    for (fn of sortArrs) {
-        fn(arr);
-    }
-}
-//var sortArrs = [bubbleSort];
-getRandArr = function() {
-    let arr = []
-    for (let i = 0; i < ARR_SIZE; i++) {
-        arr.push(i);
-    }
-    shuffle(arr);
-    return arr;
-}
-
-var shuffle = function(arr) {
-    let curIndex = arr.length;
-    while (curIndex > 0) {
-        let newIndex = Math.floor(Math.random() * curIndex);
-        let temp = arr[curIndex];
-        arr[curIndex] = arr[newIndex];
-        arr[newIndex] = temp;
-        curIndex--;
-    }
-}
-
+sorters = {};
 
 // Bubble sort
-var bubbleSort = function bubbleSort(array) {
+sorters.bubbleSort = function (array) {
     for (var i = 0; i < array.length; i++) {
         for (var j = 0; j < array.length; j++) {
             if (array[i+1] < array[i]) {
@@ -52,7 +19,7 @@ var bubbleSort = function bubbleSort(array) {
 // RADIX sort (3 types)
 
 // Quick sort
-var quickSort = function quickSort(array, low, high) {
+sorters.quickSort = function (array, low, high) {
     if (low < high) {
         var alpha = partition(array, low, high);
 
@@ -89,3 +56,41 @@ function partition(array, low, high) {
 // Counting sort
 
 // Bucket sort
+
+
+//Main script
+
+document.getElementById("btnSort").addEventListener("click",
+    () => {
+        startSort();
+    });
+startSort = function() {
+    for (sortFn of Object.entries(sorters)) {
+        let arr = getRandArr();
+        console.log('Before sort');
+        console.log(arr);
+        sortFn[1](arr);
+        console.log(`Sort type ${sortFn[0]}`)
+        console.log('After sort');
+        console.log(arr);
+    }
+}
+getRandArr = function() {
+    let arr = []
+    for (let i = 0; i < ARR_SIZE; i++) {
+        arr.push(i);
+    }
+    shuffle(arr);
+    return arr;
+}
+
+var shuffle = function(arr) {
+    let curIndex = arr.length-1;
+    while (curIndex > 0) {
+        let newIndex = Math.floor(Math.random() * curIndex);
+        let temp = arr[curIndex];
+        arr[curIndex] = arr[newIndex];
+        arr[newIndex] = temp;
+        curIndex--;
+    }
+}
