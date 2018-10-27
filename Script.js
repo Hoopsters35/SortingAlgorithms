@@ -9,24 +9,31 @@ function swap(arr, i, j) {
 
 //Bad sort
 function badSort(array) {
-    let n = array.length();
+    let n = array.length;
     setInterval(()=>{
         updateCanvas(array);
-        moveToEnd(array, n);
-        n--;
+        if(n > 0) {
+            moveToEnd(array, n);
+        } else {
+            clearInterval();
+        }
+        console.log(array);
+         n--;
     }, 100);
 }
 
 function moveToEnd(array, n) {
     if (n>0) {
-        let num = -1;
+        let num = 100;
         let index = -1;
         for (let i = 0; i < n; i++) {
-            if (array[i] > num) {
+            if (array[i] < num) {
                 num = array[i];
                 index = i;
             }
         }
+        let x = array.splice(index, 1);
+        array.push(x[0]);
     }
 }
 
@@ -219,10 +226,10 @@ startSort = function() {
     let arr = getRandArr();
     updateCanvas(arr);
     window.setTimeout(() => {
-        console.log(`Before Bubble Sort`);
+        console.log(`Before Bad Sort`);
         console.log(arr);
-        sorters.bubbleSort(arr);
-        console.log(`After Bubble Sort`);
+        badSort(arr);
+        console.log(`After Bad Sort`);
         console.log(arr);
         console.log(`Array sorted: ${isSorted(arr)}`);
         console.log('---------------------------------');
