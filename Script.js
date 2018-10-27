@@ -5,10 +5,10 @@ var sorters = {};
 sorters.bubbleSort = function (array) {
     for (var i = 0; i < array.length; i++) {
         for (var j = 0; j < array.length; j++) {
-            if (array[i+1] < array[i]) {
+            if (array[j] < array[i]) {
                 var temp = array[i];
-                array[i+1] = array[i];
-                array[i] = temp;
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
     }
@@ -93,7 +93,7 @@ startSort = function() {
         sortFn[1](arr);
         console.log(`After ${sortFn[0]}`);
         console.log(arr);
-        console.log('---------------------------------')
+        console.log('---------------------------------');
     }
 }
 getRandArr = function() {
