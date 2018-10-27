@@ -7,13 +7,13 @@ function swap(arr, i, j) {
     arr[j] = temp;
 }
 
-//Bad sort
-function badSort(array) {
+//Bad sort 1
+function badSort1(array) {
     let n = array.length;
     setInterval(()=>{
         updateCanvas(array);
         if(n > 0) {
-            moveToEnd(array, n);
+            moveToEnd1(array, n);
         } else {
             clearInterval();
         }
@@ -22,19 +22,17 @@ function badSort(array) {
     }, 100);
 }
 
-function moveToEnd(array, n) {
-    if (n>0) {
-        let num = 100;
-        let index = -1;
-        for (let i = 0; i < n; i++) {
-            if (array[i] < num) {
-                num = array[i];
-                index = i;
-            }
+function moveToEnd1(array, n) {
+    let num = 100;
+    let index = -1;
+    for (let i = 0; i < n; i++) {
+        if (array[i] < num) {
+            num = array[i];
+            index = i;
         }
-        let x = array.splice(index, 1);
-        array.push(x[0]);
     }
+    let x = array.splice(index, 1);
+    array.push(x[0]);
 }
 
 // Bubble sort
@@ -207,9 +205,13 @@ function merge(array, l, m, r) {
 
 //Main script
 
-document.getElementById("btnSort").addEventListener("click",
+document.getElementById("btnSort1").addEventListener("click",
     () => {
         startSort();
+    });
+document.getElementById("btnSort2").addEventListener("click",
+    () => {
+        startSort2();
     });
 startSort = function() {
     // for (sortFn of Object.entries(sorters)) {
@@ -226,15 +228,32 @@ startSort = function() {
     let arr = getRandArr();
     updateCanvas(arr);
     window.setTimeout(() => {
-        console.log(`Before Bad Sort`);
+        console.log(`Before Bad Sort 1`);
         console.log(arr);
-        badSort(arr);
-        console.log(`After Bad Sort`);
+        badSort1(arr);
+        console.log(`After Bad Sort 1`);
         console.log(arr);
         console.log(`Array sorted: ${isSorted(arr)}`);
         console.log('---------------------------------');
     }, 1000);
+    
 }
+
+startSort2 = function() {
+    let arr = getRandArr();
+    updateCanvas(arr);
+    window.setTimeout(() => {
+        console.log(`Before Bad Sort 2`);
+        console.log(arr);
+        badSort2(arr);
+        console.log(`After Bad Sort 2`);
+        console.log(arr);
+        console.log(`Array sorted: ${isSorted(arr)}`);
+        console.log('---------------------------------');
+    }, 1000);
+    
+}
+
 getRandArr = function() {
     let arr = [];
     for (let i = 0; i < ARR_SIZE; i++) {
