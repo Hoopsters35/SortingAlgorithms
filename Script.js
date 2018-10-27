@@ -7,8 +7,8 @@ function swap(arr, i, j) {
     arr[j] = temp;
 }
 
-//Bad sort
-function badSort(array) {
+//Bad sort 1
+function badSort1(array) {
     let n = array.length;
     setInterval(()=>{
         updateCanvas(array);
@@ -17,24 +17,59 @@ function badSort(array) {
         } else {
             clearInterval();
         }
-        console.log(array);
          n--;
     }, 100);
 }
 
-function moveToEnd(array, n) {
-    if (n>0) {
-        let num = 100;
-        let index = -1;
-        for (let i = 0; i < n; i++) {
-            if (array[i] < num) {
-                num = array[i];
-                index = i;
-            }
+function moveToEnd1(array, n) {
+    let num = 100;
+    let index = -1;
+    for (let i = 0; i < n; i++) {
+        if (array[i] < num) {
+            num = array[i];
+            index = i;
         }
-        let x = array.splice(index, 1);
-        array.push(x[0]);
     }
+    let x = array.splice(index, 1);
+    array.push(x[0]);
+}
+
+//Bad sort 2
+function badSort2(array) {
+    let n1 = 0;
+    let n2 = array.length;
+    setInterval(()=>{
+        updateCanvas(array);
+        if (n1 < n2) {
+            moveToEnds(array);
+        } else {
+            clearInterval();
+        }
+        n1++;
+        n2--;
+    }, 100);
+}
+
+function moveToEnds(array, n1, n2) {
+    let i1 = -1;
+    let i2 = -1;
+    let num1 = 100;
+    let num2 = -1;
+
+    for (let i = n1; i < n2; i++) {
+        if (array[i] < num1) {
+            num1 = array[i];
+            i1 = i;
+        }
+        if (array[i] > num2) {
+            num2 = array[i]
+            i2 = i;
+        }
+    }
+    let xS = array.splice(index, i1);
+    let xL = array.splice(index, i2);
+    array.unshift(xS);
+    array.push(xL);
 }
 
 // Bubble sort
