@@ -15,10 +15,10 @@ sorters.bubbleSort = function (array) {
 }
 
 // Insertion sort
-var insertionSort = function insertionSort(array) {
+sorters.insertionSort = function insertionSort(array) {
     for (i = 0; i < array.length; i++) {
         for(j = i + 1; j < array.length; j++) {
-            if(arra[j] < array[i]) {
+            if(array[j] < array[i]) {
                 var k = j;
                 while(k > 0 && array[k] > array[k-1]) {
                     var temp = array[k];
@@ -81,11 +81,10 @@ document.getElementById("btnSort").addEventListener("click",
 startSort = function() {
     for (sortFn of Object.entries(sorters)) {
         let arr = getRandArr();
-        console.log('Before sort');
+        console.log(`Before ${sortFn[0]}`);
         console.log(arr);
         sortFn[1](arr);
-        console.log(`Sort type ${sortFn[0]}`)
-        console.log('After sort');
+        console.log(`After ${sortFn[0]}`);
         console.log(arr);
     }
 }
