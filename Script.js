@@ -1,5 +1,5 @@
 var ARR_SIZE = 100;
-sorters = {};
+var sorters = {};
 
 // Bubble sort
 sorters.bubbleSort = function (array) {
@@ -68,7 +68,7 @@ function partition(array, low, high) {
 sorters.shellSort = function(array) {
     let gap = array.length / 2;
     while (gap > 0) {
-
+        gap = 0;
     }
 }
 
@@ -88,12 +88,13 @@ document.getElementById("btnSort").addEventListener("click",
 startSort = function() {
     for (sortFn of Object.entries(sorters)) {
         let arr = getRandArr();
+        console.log(`Sort type ${sortFn[0]}`)
         console.log('Before sort');
         console.log(arr);
         sortFn[1](arr);
-        console.log(`Sort type ${sortFn[0]}`)
         console.log('After sort');
         console.log(arr);
+        console.log('---------------------------------')
     }
 }
 getRandArr = function() {
