@@ -35,27 +35,32 @@ sorters.insertionSort = function(array) {
 // RADIX sort (3 types)
 
 // Quick sort
-sorters.quickSort = function (array, low, high) {
-    if (low < high) {
-        var alpha = partition(array, low, high);
+sorters.quickSort = function (array) {
+    let low = 0;
+    let high = array.length - 1;
+    qSort(array, low, high);
+}
 
-        quickSort(array, low, alpha - 1);
-        quickSort(array, alpha + 1, high);
+function qSort(array, low, high) {
+    if (low < high) {
+        let alpha = partition(array, low, high);
+
+        qSort(array, low, alpha - 1);
+        qSort(array, alpha + 1, high);
     }
 }
 
 function partition(array, low, high) {
-    var pivot = array[high];
-    i = low - 1;
+    let pivot = array[high];
+    i = low;
 
-    for(j = low; j < high; j++) {
+    for(j = low; j <= high; j++) {
         if(array[j] <= pivot) {
-            i++
             swap(array, i, j);
+            i++
         }
     }
-    swap(array, i+1, pivot);
-    return (i + 1);
+    return (i - 1);
 }
 // Heap sort
 
