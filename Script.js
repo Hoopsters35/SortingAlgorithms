@@ -1,14 +1,18 @@
 var ARR_SIZE = 100;
 var sorters = {};
 
+function swap(arr, i, j) {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
+
 // Bubble sort
 sorters.bubbleSort = function (array) {
     for (var i = 0; i < array.length; i++) {
         for (var j = 0; j < array.length - i; j++) {
             if (array[j] > array[j + 1]) {
-                var temp = array[j];
-                array[j] = array[j+1];
-                array[j+1] = temp;
+                swap(array, j, j+1);
             }
         }
     }
@@ -21,9 +25,7 @@ sorters.insertionSort = function(array) {
             if(array[j] < array[i]) {
                 let k = j;
                 while (k > 0 && array[k] > array[k-1]) {
-                    let temp = array[k];
-                    array[k] = array[k-1];
-                    array[k-1] = temp;
+                    swap(array, k, k-1);
                     k--;
                 }
             }
@@ -50,14 +52,10 @@ function partition(array, low, high) {
     for(j = low; j < high; j++) {
         if(array[j] <= pivot) {
             i++
-            var temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
+            swap(array, i, j);
         }
     }
-    var temp = array[i+1];
-    array[i + 1] = array[pivot];
-    array[pivot] = temp;
+    swap(array, i+1, pivot);
     return (i + 1);
 }
 // Heap sort
