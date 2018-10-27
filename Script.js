@@ -16,7 +16,7 @@ sorters.bubbleSort = function (array) {
             }
         }
     }
-    setTimeout(updateCanvas(array), 3000);
+    updateCanvas(array);
 }
 
 // Insertion sort
@@ -91,6 +91,7 @@ document.getElementById("btnSort").addEventListener("click",
 startSort = function() {
     for (sortFn of Object.entries(sorters)) {
         let arr = getRandArr();
+        updateCanvas(arr);
         console.log(`Before ${sortFn[0]}`);
         console.log(arr);
         sortFn[1](arr);
@@ -116,7 +117,6 @@ var shuffle = function(arr) {
         swap(arr, curIndex, newIndex);
         curIndex--;
     }
-    updateCanvas(arr);
 }
 function isSorted(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
