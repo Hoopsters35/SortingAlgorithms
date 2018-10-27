@@ -14,7 +14,6 @@ sorters.bubbleSort = function (array) {
             if (array[j] > array[j + 1]) {
                 swap(array, j, j+1);
             }
-            console.log(array);
         }
     }
 }
@@ -180,10 +179,9 @@ function isSorted(arr) {
     return true;
 }
 
-var canvas = document.getElementById("sortyboi");
-var ctx = canvas.getContext("2d");
-
 function updateCanvas(arr) {
+    let canvas = document.getElementById("sortyboi");
+    let ctx = canvas.getContext("2d");
     canvas.width = canvas.width;
     ctx.strokeStyle = "#BB0000";
     ctx.lineWidth = 800 / arr.length;
@@ -195,5 +193,4 @@ function updateCanvas(arr) {
         ctx.stroke();
         curSpot += ctx.lineWidth;
     }
-    setTimeout(updateCanvas(arr), 1000);
 }
