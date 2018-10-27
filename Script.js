@@ -93,6 +93,7 @@ startSort = function() {
         sortFn[1](arr);
         console.log(`After ${sortFn[0]}`);
         console.log(arr);
+        console.log(`Array sorted: ${isSorted(arr)}`);
         console.log('---------------------------------');
     }
 }
@@ -114,4 +115,12 @@ var shuffle = function(arr) {
         arr[newIndex] = temp;
         curIndex--;
     }
+}
+function isSorted(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+            return false;
+        }
+    }
+    return true;
 }
