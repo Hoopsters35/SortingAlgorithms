@@ -88,18 +88,10 @@ document.getElementById("btnSort").addEventListener("click",
 startSort = function() {
     for (sortFn of Object.entries(sorters)) {
         let arr = getRandArr();
-<<<<<<< HEAD
-        console.log(`Sort type ${sortFn[0]}`)
-        console.log('Before sort');
-        console.log(arr);
-        sortFn[1](arr);
-        console.log('After sort');
-=======
         console.log(`Before ${sortFn[0]}`);
         console.log(arr);
         sortFn[1](arr);
         console.log(`After ${sortFn[0]}`);
->>>>>>> c89fca7bb628344c5a070d86d90f57319b0bd96c
         console.log(arr);
         console.log('---------------------------------')
     }
