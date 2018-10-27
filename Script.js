@@ -25,7 +25,21 @@ var bubbleSort = function bubbleSort(array) {
 }
 
 // Insertion sort
-
+var insertionSort = function insertionSort(array) {
+    for (i = 0; i < array.length; i++) {
+        for(j = i + 1; j < array.length; j++) {
+            if(arra[j] < array[i]) {
+                var k = j;
+                while(k > 0 && array[k] > array[k-1]) {
+                    var temp = array[k];
+                    array[k] = array[k-1];
+                    array[k-1] = temp; 
+                    k--;
+                }
+            }
+        }
+    }
+}
 // RADIX sort (3 types)
 
 // Quick sort
