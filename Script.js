@@ -7,6 +7,29 @@ function swap(arr, i, j) {
     arr[j] = temp;
 }
 
+//Bad sort
+function badSort(array) {
+    let n = array.length();
+    setInterval(()=>{
+        updateCanvas(array);
+        moveToEnd(array, n);
+        n--;
+    }, 100);
+}
+
+function moveToEnd(array, n) {
+    if (n>0) {
+        let num = -1;
+        let index = -1;
+        for (let i = 0; i < n; i++) {
+            if (array[i] > num) {
+                num = array[i];
+                index = i;
+            }
+        }
+    }
+}
+
 // Bubble sort
 sorters.bubbleSort = function (array) {
     for (var i = 0; i < array.length; i++) {
