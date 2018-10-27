@@ -63,14 +63,13 @@ function partition(array, low, high) {
 
 // Shell sort
 sorters.shellSort = function(array) {
-    let gap = array.length / 2;
-    while (gap >= 1) {
-        for (i = 0; i < gap; i++) {
-            if (array[i] > array[i+gap]) {
-                swap(array, i, i+gap);
+    let gap = Math.floor(array.length / 2);
+    for (let gap = Math.floor(array.length/2); gap > 0; gap = Math.floor(gap/=2)) {
+        for (i = gap; i < array.length; i++) {
+            for (let j = i; j>=gap && array[j-gap] > array[j]; j -= gap) {
+                swap(array, j-gap, j);
             }
         }
-        gap /= 2;
     }
 }
 
