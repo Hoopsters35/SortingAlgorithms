@@ -21,12 +21,11 @@ sorters.bubbleSort = function (array) {
 // Insertion sort
 sorters.insertionSort = function(array) {
     for (let i = 0; i < array.length; i++) {
-        for (let j = i + 1; j < array.length; j++) {
-            if(array[j] < array[i]) {
-                let k = j;
-                while (k > 0 && array[k] > array[k-1]) {
-                    swap(array, k, k-1);
-                    k--;
+        for (let j = 0; j < i; j++) {
+            if(array[j] >= array[i]) {
+                //Insert arr[i] to the left of arr[j]
+                for (let k = j; k <= i; k++) {
+                    swap(array, k, i);
                 }
             }
         }
@@ -113,9 +112,7 @@ var shuffle = function(arr) {
     let curIndex = arr.length-1;
     while (curIndex > 0) {
         let newIndex = Math.floor(Math.random() * curIndex);
-        let temp = arr[curIndex];
-        arr[curIndex] = arr[newIndex];
-        arr[newIndex] = temp;
+        swap(arr, curIndex, newIndex);
         curIndex--;
     }
     updateCanvas(arr);
