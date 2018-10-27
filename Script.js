@@ -1,4 +1,14 @@
 //Main script
+document.getElementById("btnSort").addEventListener("click",
+    () => {
+        startSort(sortArrs)
+    });
+startSort = (arr) => {
+    for (fn of sorters) {
+        fn(arr);
+    }
+}
+var sortArrs = [bubbleSort];
 
 // Bubble sort
 
