@@ -15,21 +15,22 @@ sorters.bubbleSort = function (array) {
 }
 
 // Insertion sort
-sorters.insertionSort = function insertionSort(array) {
-    for (i = 0; i < array.length; i++) {
-        for(j = i + 1; j < array.length; j++) {
+sorters.insertionSort = function(array) {
+    for (let i = 0; i < array.length; i++) {
+        for (let j = i + 1; j < array.length; j++) {
             if(array[j] < array[i]) {
-                var k = j;
-                while(k > 0 && array[k] > array[k-1]) {
-                    var temp = array[k];
+                let k = j;
+                while (k > 0 && array[k] > array[k-1]) {
+                    let temp = array[k];
                     array[k] = array[k-1];
-                    array[k-1] = temp; 
+                    array[k-1] = temp;
                     k--;
                 }
             }
         }
     }
 }
+
 // RADIX sort (3 types)
 
 // Quick sort
@@ -64,6 +65,12 @@ function partition(array, low, high) {
 // BOGO sort
 
 // Shell sort
+sorters.shellSort = function(array) {
+    let gap = array.length / 2;
+    while (gap > 0) {
+
+    }
+}
 
 // Merge sort
 
