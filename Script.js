@@ -14,9 +14,9 @@ sorters.bubbleSort = function (array) {
             if (array[j] > array[j + 1]) {
                 swap(array, j, j+1);
             }
+            console.log(array);
         }
     }
-    updateCanvas(array);
 }
 
 // Insertion sort
@@ -93,20 +93,31 @@ document.getElementById("btnSort").addEventListener("click",
         startSort();
     });
 startSort = function() {
-    for (sortFn of Object.entries(sorters)) {
-        let arr = getRandArr();
-        updateCanvas(arr);
-        console.log(`Before ${sortFn[0]}`);
+    // for (sortFn of Object.entries(sorters)) {
+    //     let arr = getRandArr();
+    //     window.setTimeout(updateCanvas(arr), 1);
+    //     console.log(`Before ${sortFn[0]}`);
+    //     console.log(arr);
+    //     sortFn[1](arr);
+    //     console.log(`After ${sortFn[0]}`);
+    //     console.log(arr);
+    //     console.log(`Array sorted: ${isSorted(arr)}`);
+    //     console.log('---------------------------------');
+    // }
+    let arr = getRandArr();
+    updateCanvas(arr);
+    window.setTimeout(() => {
+        console.log(`Before Bubble Sort`);
         console.log(arr);
-        sortFn[1](arr);
-        console.log(`After ${sortFn[0]}`);
+        sorters.bubbleSort(arr);
+        console.log(`After Bubble Sort`);
         console.log(arr);
         console.log(`Array sorted: ${isSorted(arr)}`);
         console.log('---------------------------------');
-    }
+    }, 1000);
 }
 getRandArr = function() {
-    let arr = []
+    let arr = [];
     for (let i = 0; i < ARR_SIZE; i++) {
         arr.push(i);
     }
@@ -131,17 +142,20 @@ function isSorted(arr) {
     return true;
 }
 
+var canvas = document.getElementById("sortyboi");
+var ctx = canvas.getContext("2d");
+
 function updateCanvas(arr) {
-    let canvas = document.getElementById("sortyboi");
-    let ctx = canvas.getContext("2d");
+    canvas.width = canvas.width;
     ctx.strokeStyle = "#BB0000";
-    ctx.lineWidth = 1000 / arr.length;
+    ctx.lineWidth = 800 / arr.length;
     let curSpot = ctx.lineWidth / 2;
-    let heightUnit = 800/arr.length;
+    let heightUnit = 600/arr.length;
     for( let i = 0; i < arr.length; i++) {
-        ctx.moveTo(curSpot,800);
-        ctx.lineTo(curSpot, 800 - (heightUnit * arr[i]));
+        ctx.moveTo(curSpot,600);
+        ctx.lineTo(curSpot, 600 - (heightUnit * arr[i]));
         ctx.stroke();
         curSpot += ctx.lineWidth;
     }
+    setTimeout(updateCanvas(arr), 1000);
 }
