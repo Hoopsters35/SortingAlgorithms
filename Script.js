@@ -7,6 +7,29 @@ function swap(arr, i, j) {
     arr[j] = temp;
 }
 
+//Bad sort
+function badSort(array) {
+    let n = array.length();
+    setInterval(()=>{
+        updateCanvas(array);
+        moveToEnd(array, n);
+        n--;
+    }, 100);
+}
+
+function moveToEnd(array, n) {
+    if (n>0) {
+        let num = -1;
+        let index = -1;
+        for (let i = 0; i < n; i++) {
+            if (array[i] > num) {
+                num = array[i];
+                index = i;
+            }
+        }
+    }
+}
+
 // Bubble sort
 sorters.bubbleSort = function (array) {
     for (var i = 0; i < array.length; i++) {
@@ -117,6 +140,58 @@ sorters.shellSort = function(array) {
 }
 
 // Merge sort
+//TODO: Justin
+sorters.mergeSort = function(array) {
+    let l = 0;
+    let r = array.length - 1;
+    mSort(array, l, r);
+}
+
+function mSort(array, l, r) {
+    if (l < r) {
+        let m = Math.floor((l + r) / 2);
+        mSort(array, l, m);
+        mSort(array, m+1, r);
+        merge(array, l, m, r);
+    }
+}
+
+function merge(array, l, m, r) {
+    let n1 = m - l + 1;
+    let n2 = r - m;
+
+    let left = [], right = [];
+    for (let i = 0; i < n1; i++) {
+        left[i] = array[l+i];
+    }
+    for (let j = 0; j < n1; j++) {
+        right[j] = array[m+j+1];
+    }
+
+    let i = 0, j = 0, k = 1;
+    while (i < n1 && j < n2) {
+        if (left[i] <= right[i]) {
+            array[k] = left[i];
+            i++;
+        } else {
+            array[k] = right[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        array[k] = left[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        array[k] = right[j];
+        j++;
+        k++;
+    }
+}
 
 // Counting sort
 
@@ -170,6 +245,7 @@ var shuffle = function(arr) {
         curIndex--;
     }
 }
+
 function isSorted(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
         if (arr[i] > arr[i + 1]) {
