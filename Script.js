@@ -10,28 +10,27 @@ function swap(arr, i, j) {
 //Bad sort 1
 function badSort1(array) {
     let n = array.length;
-    setInterval(()=>{
+    let sortboi = setInterval(()=>{
         updateCanvas(array);
         if(n > 0) {
             moveToEnd1(array, n);
         } else {
-            clearInterval();
+            clearInterval(sortboi);
         }
          n--;
-    }, 100);
+    }, 50);
 }
 
 function moveToEnd1(array, n) {
-    let num = 100;
+    let num = -1;
     let index = -1;
     for (let i = 0; i < n; i++) {
-        if (array[i] < num) {
+        if (array[i] > num) {
             num = array[i];
             index = i;
         }
     }
-    let x = array.splice(index, 1);
-    array.push(x[0]);
+    swap(array, n-1, index);
 }
 
 //Bad sort 2
@@ -40,13 +39,14 @@ function badSort2(array) {
     let n2 = array.length;
     setInterval(()=>{
         updateCanvas(array);
-        if (n1 < n2) {
+        if (n1 <= n2) {
             moveToEnds(array);
         } else {
             clearInterval();
         }
         n1++;
         n2--;
+        console.log(array);
     }, 100);
 }
 
@@ -66,10 +66,11 @@ function moveToEnds(array, n1, n2) {
             i2 = i;
         }
     }
-    let xS = array.splice(index, i1);
-    let xL = array.splice(index, i2);
-    array.unshift(xS);
-    array.push(xL);
+    let xS = array.splice(i1, 1);
+    let xL = array.splice(i2, 1);
+    array.push(xL[0]);
+    array.unshift(xS[0]);
+    
 }
 
 // Bubble sort
